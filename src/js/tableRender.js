@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import * as numeral from 'numeral';
 import renderTableTitle from './renderTableTitle';
 
 // Функция для очистки таблицы, сортировки строк по критериям и последующей отрисовки
@@ -13,13 +14,13 @@ export default function tableRender(title, table, rows, operation) {
     rows.reverse();
   }
   title.innerText = `By ${operation.by} (${operation.how})`;
-  renderTableTitle(table);
+  renderTableTitle(table, operation.by, operation.how);
   rows.forEach((item) => {
     table.innerHTML += `${`<tr class="table-row" data-id="${item.dataset.id}" data-title="${item.dataset.title}" data-year="${item.dataset.year}" data-imdb="${item.dataset.imdb}">\n`
     + `  <td class="table-cell table-cell-id">${item.dataset.id}</td>\n`
     + `  <td class="table-cell">${item.dataset.title}</td>\n`
     + `  <td class="table-cell">${item.dataset.year}</td>\n`
-    + `  <td class="table-cell">imdb: ${item.dataset.imdb}</td>\n`
+    + `  <td class="table-cell">imdb: ${numeral(item.dataset.imdb).format('0.0')}</td>\n`
     + '</tr>\n'}`;
   });
 }
