@@ -23,7 +23,7 @@ export default function init() {
   title.innerText = 'By default';
   table.setAttribute('class', 'table');
 
-  renderTableTitle(table);
+  renderTableTitle(table, 'default', 'default');
 
   // Вытягиваем данные и строим таблицу по умолчанию
   data.films.forEach((item) => {
